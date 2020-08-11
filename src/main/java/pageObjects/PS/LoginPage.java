@@ -38,7 +38,7 @@ public class LoginPage extends GenericPage {
                 break;
             } catch (Exception e) {
                 LOGGER.error("Login Page did not load properly! Refreshing page...");
-                getDriver().navigate().refresh();
+                openUrl();
             }
             attempts++;
         }
