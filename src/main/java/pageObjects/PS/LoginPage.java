@@ -4,6 +4,7 @@ import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.util.SystemEnvironmentVariables;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +30,9 @@ public class LoginPage extends GenericPage {
 
     public void setUserCredentials() {
         int attempts = 0;
-        while (attempts < 3) {
+        while (attempts < 4) {
             try {
-                ExplicitWait.explicitlyWaitForPresenceOfElement(getDriver(), 40, userIDInput);
+                ExplicitWait.explicitlyWaitForVisibilityOfElement(getDriver(), 40, By.xpath("//*[@id = 'userid']"));
                 typeIntoInput(userIDInput, getUserID(), false);
                 typeIntoInput(passwordInput, getUserPassword(), false);
                 break;
