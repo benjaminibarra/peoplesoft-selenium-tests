@@ -5,6 +5,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.util.SystemEnvironmentVariables;
 import org.openqa.selenium.WebDriver;
+import utils.ExplicitWait;
 
 @DefaultUrl("/psp/UFIUAT92/EMPLOYEE/ERP/?&cmd=login&languageCd=ENG")
 public class LoginPage extends GenericPage {
@@ -21,6 +22,7 @@ public class LoginPage extends GenericPage {
     protected WebDriver driver = getDriver();
 
     public void setUserCredentials() {
+        ExplicitWait.explicitlyWaitForPresenceOfElement(getDriver(), 120, userIDInput);
         typeIntoInput(userIDInput, getUserID(), false);
         typeIntoInput(passwordInput, getUserPassword(), false);
     }
