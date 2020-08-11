@@ -329,7 +329,7 @@ public class MaintenanceWorksheetAndUnpost {
 
         groupEntrySteps.when_I_set_Search_Criteria_Group_ID_using_saved_Group_ID_1();
 
-        groupEntrySteps.when_I_click_Search_Creteria_Search_Button();
+        groupEntrySteps.when_I_click_Search_Criteria_Search_Button();
 
         groupEntrySteps.then_the_Group_Control_page_for_Group_ID_1_should_show_up();
 
@@ -339,7 +339,7 @@ public class MaintenanceWorksheetAndUnpost {
 
         groupEntrySteps.when_I_set_Search_Criteria_Group_ID_using_saved_Group_ID_2();
 
-        groupEntrySteps.when_I_click_Search_Creteria_Search_Button();
+        groupEntrySteps.when_I_click_Search_Criteria_Search_Button();
 
         groupEntrySteps.then_the_Group_Control_page_for_Group_ID_2_should_show_up();
 

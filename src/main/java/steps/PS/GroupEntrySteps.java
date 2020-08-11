@@ -10,13 +10,11 @@ public class GroupEntrySteps extends GenericSteps {
     @ManagedPages
     GroupEntryPage groupEntryPage;
 
-    @Step
-    public void switch_to_Pt_IFrame () {
+    public void switch_to_Pt_IFrame() {
         groupEntryPage.switchToPtIFrame();
     }
 
-    @Step
-    public void switch_to_Base_DOM () {
+    void switch_to_Base_DOM () {
         groupEntryPage.switchToBaseDom();
     }
 
@@ -35,7 +33,7 @@ public class GroupEntrySteps extends GenericSteps {
         Assert.assertTrue(groupEntryPage.isGroupEntryHeaderVisible());
     }
 
-    @Step
+    @Step("When I set the 'Group Unit' to '{0}'")
     public void when_I_set_the_Group_Unit_to(String group_unit) {
         groupEntryPage.setGroupUnit(group_unit);
     }
@@ -48,25 +46,24 @@ public class GroupEntrySteps extends GenericSteps {
     @Step
     public void then_the_Group_Control_form_should_show_up() {
         Assert.assertTrue(groupEntryPage.isGroupControlHeaderSelected());
-        //groupEntryPage.saveGroupID();
     }
 
-    @Step
+    @Step("When I set the 'Group Type' to '{0}'")
     public void when_I_set_the_Group_Type(String group_type) {
         groupEntryPage.setGroupType(group_type);
     }
 
-    @Step
+    @Step("When I set the 'Origin ID' to '{0}'")
     public void when_I_set_the_Origin_ID(String origin_id) {
         groupEntryPage.setOriginID(origin_id);
     }
 
-    @Step
+    @Step("When I set the 'Currency Control' to '{0}'")
     public void when_I_set_the_Currency_Control(String currency_control) {
         groupEntryPage.setCurrencyControl(currency_control);
     }
 
-    @Step
+    @Step("When I set the 'Control Totals Control' to '{0}'")
     public void when_I_set_the_Control_Totals_Control(String control_tools_control) {
         groupEntryPage.setControlTotalsControl(control_tools_control);
     }
@@ -81,37 +78,37 @@ public class GroupEntrySteps extends GenericSteps {
         Assert.assertTrue(groupEntryPage.isPendingItem1HeaderSelected());
     }
 
-    @Step
+    @Step("When I set the 'Pending Item Entry Business Unit' to '{0}'")
     public void when_I_set_the_Pending_Item_Entry_Business_Unit(String business_unit) {
         groupEntryPage.setPendingItemBusinessUnit(business_unit);
     }
 
-    @Step
+    @Step("When I set the 'Pending Item Entry Customer' to '{0}'")
     public void when_I_set_the_Pending_Item_Entry_Customer(String customer) {
         groupEntryPage.setPendingItemCustomer(customer);
     }
 
-    @Step
+    @Step("When I set the 'Pending Item Line' to '{0}'")
     public void when_I_set_the_Pending_Item_Line(String line) {
         groupEntryPage.setPendingItemLine(line);
     }
 
-    @Step
+    @Step("When I set the 'Pending Item Terms' to '{0}'")
     public void when_I_set_the_Pending_Item_Terms(String terms) {
         groupEntryPage.setPedingItemTerms(terms);
     }
 
-    @Step
+    @Step("When I set the 'Pending Item Amount' to '{0}'")
     public void when_I_set_the_Pending_Item_Amount(String amount) {
         groupEntryPage.setPendingItemAmount(amount);
     }
 
-    @Step
+    @Step("When I set the 'Pending Item Entry Type' to '{0}'")
     public void when_I_set_the_Pending_Item_Entry_Type(String entry_type) {
         groupEntryPage.setPendingItemEntryType(entry_type);
     }
 
-    @Step
+    @Step("When I set the 'Reason' to '{0}'")
     public void when_I_set_the_Reason(String reason) {
         groupEntryPage.setPendingItemReason(reason);
     }
@@ -126,7 +123,7 @@ public class GroupEntrySteps extends GenericSteps {
         Assert.assertTrue(groupEntryPage.isPendingItem3HeaderSelected());
     }
 
-    @Step
+    @Step("When I set the 'User Text 1' to '{0}'")
     public void when_I_set_the_User_Text_1(String user_text_1) {
         groupEntryPage.setUserText(1, user_text_1);
     }
@@ -146,7 +143,7 @@ public class GroupEntrySteps extends GenericSteps {
         groupEntryPage.clickGroupActionsBalanceBtn();
     }
 
-    @Step
+    @Step("When I set the 'Control Totals Count' to '{0}'")
     public void when_I_set_the_Control_Totals_Count(String control_tools_count) {
         groupEntryPage.setControlTotalsCount(control_tools_count);
     }
@@ -166,32 +163,32 @@ public class GroupEntrySteps extends GenericSteps {
         groupEntryPage.clickDistributionLinesShowAllColumnsButton();
     }
 
-    @Step
+    @Step("When I set the 'Objective' of the first 'Distribution Lines' row to '{0}'")
     public void when_I_set_the_Objective_of_the_first_Distribution_Lines_row(String objective) {
         groupEntryPage.setDistributionLineRowObjective(0, objective);
     }
 
-    @Step
+    @Step("When I set the 'Objective' of the second 'Distribution Lines' row to '{0}'")
     public void when_I_set_the_Objective_of_the_second_Distribution_Lines_row(String objective) {
         groupEntryPage.setDistributionLineRowObjective(1, objective);
     }
 
-    @Step
+    @Step("When I set the 'OU' of the first 'Distribution Lines' row to '{0}'")
     public void when_I_set_the_OU_of_the_first_Distribution_Lines_row(String ou) {
         groupEntryPage.setDistributionLineRowOU(0, ou);
     }
 
-    @Step
+    @Step("When I set the 'OU' of the second 'Distribution Lines' row to '{0}'")
     public void when_I_set_the_OU_of_the_second_Distribution_Lines_row(String ou) {
         groupEntryPage.setDistributionLineRowOU(1, ou);
     }
 
-    @Step
+    @Step("When I set the 'Line Descr' of the first 'Distribution Lines' row to '{0}'")
     public void when_I_set_the_Line_Descr_of_the_first_Distribution_Lines_row(String line_descr) {
         groupEntryPage.setDistributionLineRowLinesDescr(0, line_descr);
     }
 
-    @Step
+    @Step("When I set the 'Line Descr' of the second 'Distribution Lines' row to '{0}'")
     public void when_I_set_the_Line_Descr_of_the_second_Distribution_Lines_row(String line_descr) {
         groupEntryPage.setDistributionLineRowLinesDescr(1, line_descr);
     }
@@ -202,7 +199,7 @@ public class GroupEntrySteps extends GenericSteps {
         groupEntryPage.waitForSavedPopup();
     }
 
-    @Step
+    @Step("When I set the 'Posting Action Action' to '{0}'")
     public void when_I_set_the_Posting_Action_Action(String action) {
         groupEntryPage.setPostingActionAction(action);
     }
@@ -223,12 +220,12 @@ public class GroupEntrySteps extends GenericSteps {
         groupEntryPage.clickAccountingEntriesAddBtn();
     }
 
-    @Step
+    @Step("When I set the 'Account' of the second 'Distribution Lines' row to '{0}'")
     public void when_I_set_the_Account_of_the_second_Distribution_Lines_row(String account) {
         groupEntryPage.setDistributionLineRowLinesAccount(1, account);
     }
 
-    @Step
+    @Step("When I set the 'Account' of the first 'Distribution Lines' row to '{0}'")
     public void when_I_set_the_Account_of_the_first_Distribution_Lines_row(String account) {
         groupEntryPage.setDistributionLineRowLinesAccount(0, account);
     }
@@ -240,28 +237,28 @@ public class GroupEntrySteps extends GenericSteps {
         groupEntryPage.waitForLoadingSpinner();
     }
 
-    @Step
+    @Step("When I set the 'Search Criteria Group Unit' dropdown field to '{0}'")
     public void when_I_set_Search_Criteria_Group_Unit_Dropdown(String group_unit_dropdown_search_criteria) {
         groupEntryPage.setSearchCriteriaGroupUnitDropdown(group_unit_dropdown_search_criteria);
     }
 
-    @Step
+    @Step("When I set the 'Search Criteria Group Unit' to '{0}'")
     public void when_I_set_Search_Criteria_Group_Unit(String search_criteria_group_unit) {
         groupEntryPage.setSearchCriteriaGroupUnit(search_criteria_group_unit);
     }
 
-    @Step
+    @Step("When I set the 'Search Criteria User ID' to '{0}'")
     public void when_I_set_Search_Criteria_User_ID(String search_criteria_user_id) {
         groupEntryPage.setSearchCriteriaUserID(search_criteria_user_id);
     }
 
-    @Step
+    @Step("When I set the 'Search Criteria Entered Date' to '{0}'")
     public void when_I_set_Search_Criteria_Entered_Date(String search_criteria_entered_date) {
         groupEntryPage.setSearchCriteriaEnteredDate(search_criteria_entered_date);
     }
 
     @Step
-    public void when_I_click_Search_Creteria_Search_Button() {
+    public void when_I_click_Search_Criteria_Search_Button() {
         groupEntryPage.clickSearchCriteriaSearchBtn();
     }
 
