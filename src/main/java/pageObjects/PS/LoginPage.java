@@ -30,9 +30,8 @@ public class LoginPage extends GenericPage {
 
     public void setUserCredentials() {
         int attempts = 0;
-        while (attempts < 3) {
+        while (attempts < 4) {
             try {
-                ExplicitWait.explicitlyWaitForVisibilityOfElement(getDriver(), 40, By.xpath("//*[@id = 'userid']"));
                 typeIntoInput(userIDInput, getUserID(), false);
                 typeIntoInput(passwordInput, getUserPassword(), false);
                 break;
