@@ -30,7 +30,7 @@ public class LoginPage extends GenericPage {
 
     public void setUserCredentials() {
         int attempts = 0;
-        while (attempts < 4) {
+        while (attempts < 3) {
             try {
                 ExplicitWait.explicitlyWaitForVisibilityOfElement(getDriver(), 40, By.xpath("//*[@id = 'userid']"));
                 typeIntoInput(userIDInput, getUserID(), false);
@@ -38,6 +38,7 @@ public class LoginPage extends GenericPage {
                 break;
             } catch (Exception e) {
                 LOGGER.error("Login Page did not load properly! Refreshing page...");
+                getDriver().close();
                 openUrl();
             }
             attempts++;
