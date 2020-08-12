@@ -170,10 +170,10 @@ public class GenericPage extends PageObject {
         System.out.println("CLICKED ====> " + (e - s));
     }
 
-    public void typeIntoInput (WebElementFacade input, String text, boolean waitForInputToBeEntered) {
+    public void typeIntoInput (WebElementFacade input, String text, boolean waitForInputToBeEntered, boolean useAttempts) {
         long s = System.currentTimeMillis();
         int attempts = 0;
-        int maxAttempts = 4;
+        int maxAttempts = useAttempts ? 4 : 1;
         while (attempts < maxAttempts) {
             try {
                 ExplicitWait.explicitlyWaitForVisibilityOfElement(getDriver(), 30, input);
@@ -200,6 +200,10 @@ public class GenericPage extends PageObject {
         }
         long e = System.currentTimeMillis();
         System.out.println("TYPE ==> " + (e - s));
+    }
+
+    public void typeIntoInput (WebElementFacade input, String text, boolean waitForInputToBeEntered) {
+       typeIntoInput(input, text, true);
     }
 
     public void typeIntoInput (WebElementFacade input, String text) {

@@ -33,8 +33,8 @@ public class LoginPage extends GenericPage {
         int maxAttempts = 4;
         while (attempts < maxAttempts) {
             try {
-                typeIntoInput(userIDInput, getUserID(), false);
-                typeIntoInput(passwordInput, getUserPassword(), false);
+                typeIntoInput(userIDInput, getUserID(), false, false);
+                typeIntoInput(passwordInput, getUserPassword(), false, false);
                 break;
             } catch (Exception e) {
                 if (attempts == (maxAttempts - 1)) { //if last attempt, don't catch exception
