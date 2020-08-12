@@ -203,7 +203,7 @@ public class GenericPage extends PageObject {
     }
 
     public void typeIntoInput (WebElementFacade input, String text, boolean waitForInputToBeEntered) {
-       typeIntoInput(input, text, true);
+       typeIntoInput(input, text, true, true);
     }
 
     public void typeIntoInput (WebElementFacade input, String text) {
