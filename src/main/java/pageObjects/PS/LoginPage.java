@@ -30,15 +30,20 @@ public class LoginPage extends GenericPage {
 
     public void setUserCredentials() {
         int attempts = 0;
-        while (attempts < 4) {
+        int maxAttempts = 4;
+        while (attempts < maxAttempts) {
             try {
                 typeIntoInput(userIDInput, getUserID(), false);
                 typeIntoInput(passwordInput, getUserPassword(), false);
                 break;
             } catch (Exception e) {
-                LOGGER.error("Login Page did not load properly! Refreshing page...");
-                getDriver().close();
-                openUrl();
+                if (attempts == (maxAttempts - 1)) { //if last attempt, don't catch exception
+                    throw e;
+                } else {
+                    LOGGER.error("Login Page did not load properly! Refreshing page...");
+                    getDriver().close();
+                    openUrl();
+                }
             }
             attempts++;
         }

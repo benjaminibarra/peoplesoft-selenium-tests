@@ -21,12 +21,17 @@ public class HeaderPage extends GenericPage {
 
     public void clickMainMenuBtn() {
         int attempts = 0;
-        while (attempts < 3) {
+        int maxAttempts = 4;
+        while (attempts < maxAttempts) {
             try {
                 ExplicitWait.explicitlyWaitForVisibilityOfElement(getDriver(), 40, mainMenuBtnAnchor);
                 break;
             } catch (Exception e) {
-                getDriver().navigate().refresh();
+                if (attempts == (maxAttempts - 1)) {
+                    throw e;
+                } else {
+                    getDriver().navigate().refresh();
+                }
             }
             attempts++;
         }

@@ -340,7 +340,8 @@ public class GroupEntryPage extends GenericPage {
         int headerIndex = leftHeaderIndex == -1 ? rightHeaderIndex : leftHeaderIndex;
 
         int attempts = 0;
-        while (attempts < 3) {
+        int maxAttempts = 4;
+        while (attempts < maxAttempts) {
             try {
                 WebElementFacade table;
                 if (leftHeaderIndex == -1) {
@@ -361,12 +362,15 @@ public class GroupEntryPage extends GenericPage {
                 }
                 break;
             } catch (StaleElementReferenceException e) {
-                System.out.println("Stale element exception thrown! Retrying....");
+                if (attempts == (maxAttempts - 1)) {
+                    throw e;
+                } else {
+                    System.out.println("Stale element exception thrown! Retrying....");
+                }
             }
             attempts++;
         }
         waitForLoadingSpinner();
-
     }
 
     public void setDistributionLineRowObjective(int rowIndex, String objective) {

@@ -2,6 +2,7 @@ package pageObjects.PS;
 
 
 import com.gargoylesoftware.htmlunit.ElementNotFoundException;
+import com.github.rjeschke.txtmark.Run;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.util.SystemEnvironmentVariables;
@@ -61,7 +62,8 @@ public class GenericPage extends PageObject {
         Boolean moveDown = null;
         Integer numberOfMoves = null;
         int attempts = 0;
-        while (attempts < 3) {
+        int maxAttempts = 4;
+        while (attempts < maxAttempts) {
             try {
 
                 //Wait for options to load
@@ -110,9 +112,17 @@ public class GenericPage extends PageObject {
                 }
 
             } catch (StaleElementReferenceException e) {
-                System.out.println("Stale Element Exception thrown! Retrying...");
+                if (attempts == (maxAttempts - 1)) {
+                    throw e;
+                } else {
+                    System.out.println("Stale Element Exception thrown! Retrying...");
+                }
             } catch (ElementNotVisibleException e) {
-                System.out.println("Element Not Visible Exception thrown! Retrying...");
+                if (attempts == (maxAttempts - 1)) {
+                    throw e;
+                } else {
+                    System.out.println("Element Not Visible Exception thrown! Retrying...");
+                }
             }
             attempts++;
         }
@@ -163,19 +173,28 @@ public class GenericPage extends PageObject {
     public void typeIntoInput (WebElementFacade input, String text, boolean waitForInputToBeEntered) {
         long s = System.currentTimeMillis();
         int attempts = 0;
-        while (attempts < 3) {
-            ExplicitWait.explicitlyWaitForVisibilityOfElement(getDriver(), 30, input);
-            scrollElementIntoView(input);
-            ExplicitWait.explicitlyWaitForElementToBeClickable(getDriver(), 20, input);
-            input.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE), text);
-            if (waitForInputToBeEntered) {
-                waitForLoadingSpinner(3, 120);
-                waitABit(2000);
-            }
-            if (input.getAttribute("value").contains(text)) {
-                break;
-            } else {
-                System.out.println("Typing into text field failed! Retrying...");
+        int maxAttempts = 4;
+        while (attempts < maxAttempts) {
+            try {
+                ExplicitWait.explicitlyWaitForVisibilityOfElement(getDriver(), 30, input);
+                scrollElementIntoView(input);
+                ExplicitWait.explicitlyWaitForElementToBeClickable(getDriver(), 20, input);
+                input.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE), text);
+                if (waitForInputToBeEntered) {
+                    waitForLoadingSpinner(3, 120);
+                    waitABit(2000);
+                }
+                if (input.getAttribute("value").contains(text)) {
+                    break;
+                } else {
+                    throw new RuntimeException("Typing into text field failed!");
+                }
+            } catch (RuntimeException e) {
+                if (attempts == (maxAttempts - 1)) {
+                    throw e;
+                } else {
+                    System.out.println("Typing into text field failed! Retrying...");
+                }
             }
             attempts++;
         }
@@ -190,23 +209,32 @@ public class GenericPage extends PageObject {
     public void typeAndSelectSearchResultFromPopUp(WebElementFacade input, String text, boolean waitForInputToBeEntered) {
         long s = System.currentTimeMillis();
         int attempts = 0;
-        while (attempts < 3) {
+        int maxAttempt = 4;
+        while (attempts < maxAttempt) {
             typeIntoInput(input, text, waitForInputToBeEntered);
             waitForLoadingSpinner(2, 120);
             List<WebElementFacade> searchResultRows = findAll(Selectors.TEXT_FIELD_SEARCH_RESULT_ROW.getBy(text));
-            try {
+            if (attempts == (maxAttempt - 1)) { //If last attempt, dont catch the exception
                 ExplicitWait.explicitlyWaitForVisibilityOfElement(getDriver(), 20, searchResultRows.get(0));
-            } catch (Exception e) {
-                attempts++;
-                System.out.println("Exception Thrown! Retrying...");
-                continue;
+            } else {
+                try {
+                    ExplicitWait.explicitlyWaitForVisibilityOfElement(getDriver(), 20, searchResultRows.get(0));
+                } catch (Exception e) {
+                    attempts++;
+                    System.out.println("Exception Thrown! Retrying...");
+                    continue;
+                }
             }
-            try {
+            if (attempts == (maxAttempt - 1)) { //If last attempt, dont catch the exception
                 clickElement(searchResultRows.get(0));
-            } catch (ElementNotInteractableException e) {
-                attempts++;
-                System.out.println("ElementNotInteractableException Thrown! Retrying...");
-                continue;
+            } else {
+                try {
+                    clickElement(searchResultRows.get(0));
+                } catch (ElementNotInteractableException e) {
+                    attempts++;
+                    System.out.println("ElementNotInteractableException Thrown! Retrying...");
+                    continue;
+                }
             }
             break;
         }
